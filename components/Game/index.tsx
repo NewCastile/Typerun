@@ -7,7 +7,7 @@ import GameStarter from "./GameStarter"
 import { AnswerItem, GameState } from "../../types"
 
 const Game = () => {
-	const startingCharCode = useRef<number>(88)
+	const startingCharCode = useRef<number>(65)
 	const endCharCode = useRef<number>(90)
 	const [currentCharCode, setCurrentCharCode] = useState<number>(
 		startingCharCode.current
@@ -65,7 +65,7 @@ const Game = () => {
 				gameState,
 				setGameState,
 			}}>
-			<div className='w-full max-h-max my-5 px-10 flex flex-row justify-center items-center space-x-10'>
+			<div className='max-h-max flex flex-row items-center justify-center w-full px-10 my-5 space-x-10'>
 				{gameState === "END" ? (
 					<GameResults />
 				) : (
