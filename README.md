@@ -9,7 +9,6 @@ Al finalizar se te mostrará el tiempo en que demoraste en responder cada uno de
 
 Este juego está limitado en gran medida por el número de peticiones que pueden hacerse a la Oxford Dictionaries API,
 siendo un máximo de **1000 peticiones** por el plan de la API del proyecto. Para mayor información haz click el signo
-de interrogación en la parte superior derecha del elemento principal del juego o sim prefieras revisa
-el component `About` haciendo click [acá](`https://github.com/NewCastile/typerun/blob/main/src/components/About.tsx`).
+de interrogación en la parte superior derecha del elemento principal del juego.
 
 Dale un intento y sientete libre de notificarme cualquier mejora/cambio que te gustaría hacer.
