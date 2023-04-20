@@ -29,9 +29,22 @@ export default function GameStarter({
 							type={"text"}
 							color={"black"}
 							maxLength={12}
-							onKeyUp={(e) => {
-								if (e.code === "Enter") {
-									setAnswer(e.currentTarget.value)
+							onKeyUp={(event) => {
+								if (event.code === "Enter") {
+									const introducedWord = event.currentTarget.value
+									const introducedWordFirstChar = introducedWord
+										.toUpperCase()
+										.charCodeAt(0)
+									console.log(`intro ${introducedWordFirstChar}`)
+									console.log(`current ${currentCharCode}`)
+									if (wordInput.current) {
+										if (introducedWordFirstChar !== currentCharCode) {
+											wordInput.current.value = ""
+											return
+										} else {
+											setAnswer(event.currentTarget.value)
+										}
+									}
 								}
 							}}
 						/>
