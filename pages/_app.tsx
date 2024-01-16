@@ -1,41 +1,65 @@
-/** @format */
+import type { AppProps } from "next/app";
+import "../styles/globals.css";
 
-import "../styles/globals.css"
-import type { AppProps } from "next/app"
-import Link from "next/link"
-import QuestionIcon from "../components/QuestionIcon"
+import { QueryClient, QueryClientProvider } from "react-query";
 
-function MyApp({ Component, pageProps }: AppProps) {
-	return (
-		<div className='w-full flex flex-col justify-start items-center space-y-10 mt-5'>
-			<main className='h-full w-1/2 max-w-[1000px] min-w-[300px] lg:min-w-[650px]  flex flex-col justify-center items-center'>
-				<div className='w-full neu-convex flex flex-col justify-center items-center py-10'>
-					<header className='w-full flex flex-col justify-center relative h-[60px] text-5xl font-extrabold'>
-						<Link href={"/"} passHref>
-							<h1 className='self-center cursor-pointer'>Typerun</h1>
-						</Link>
-						<Link href={"/info"} passHref>
-							<span className='group absolute top-[-20px] sm:top-0 right-4 sm:right-10 cursor-pointer'>
-								<QuestionIcon />
-								<span className='hidden rounded-md text-white text-center text-[1.4rem] group-hover:block animated fade-in fast bg-neutral-700 absolute top-[-40px] right-0 md:right-[-220px] w-[16ch] py-2'>
-									Sobre la aplicación
-								</span>
-							</span>
-						</Link>
-					</header>
-					<Component {...pageProps} />
-				</div>
-			</main>
-			<footer className='h-[60px] flex flex-col justify-center text-xl'>
-				<p className='text-3xl'>
-					Done by{" "}
-					<a href='https://github.com/NewCastile' target='__blank'>
-						NewCastile
-					</a>
-				</p>
-			</footer>
-		</div>
-	)
-}
+import { GameContext } from "../context";
+import useGame from "../hooks/use-game";
+import Header from "../components/layout/header";
+import Footer from "../components/layout/footer";
 
-export default MyApp
+const queryClient = new QueryClient();
+
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  const {
+    answer,
+    setAnswer,
+    answers,
+    setAnswers,
+    currentCharCode,
+    setCurrentCharCode,
+    endCharCode,
+    gameState,
+    setGameState,
+    wordInputRef,
+  } = useGame();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <GameContext.Provider
+        value={{
+          currentCharCode,
+          setCurrentCharCode,
+          endCharCode: endCharCode.current,
+          answer,
+          setAnswer,
+          answers,
+          setAnswers,
+          gameState,
+          setGameState,
+          wordInputRef,
+        }}
+      >
+        <div className={"mt-5 flex w-full flex-col items-center justify-start space-y-10"}>
+          <main
+            className={
+              "flex h-auto min-h-[612px] w-1/2 min-w-[300px] max-w-[1000px] flex-col items-center justify-center lg:min-w-[650px]"
+            }
+          >
+            <div
+              className={
+                "neu-convex relative flex h-full w-full flex-col items-center justify-start space-y-5 py-10"
+              }
+            >
+              <Header />
+              <Component {...pageProps} />
+            </div>
+          </main>
+          <Footer />
+        </div>
+      </GameContext.Provider>
+    </QueryClientProvider>
+  );
+};
+
+export default MyApp;
