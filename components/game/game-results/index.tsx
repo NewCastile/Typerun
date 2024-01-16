@@ -13,7 +13,7 @@ const GameResults = () => {
     gameData: { answers },
   } = useGameData();
 
-  const { data, error, isError, isLoading, isRefetching, refetch, status } = useFetchDefinitions({
+  const { data, isError, isLoading, isRefetching, refetch, status } = useFetchDefinitions({
     answers,
   });
 
@@ -27,7 +27,7 @@ const GameResults = () => {
 
   if (isError)
     return (
-      <GameResultsError {...{ error }}>
+      <GameResultsError>
         <button
           className={"btn-salmon"}
           onClick={() => {
