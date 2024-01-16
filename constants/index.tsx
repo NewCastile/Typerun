@@ -28,4 +28,4 @@ export const UNKWOWN_ERROR_RESPONSE = {
 
 export const NO_ANSWER_PLACEHOLDER = "Unanswered";
 
-export const ANSWER_LIMITED_TIME = 60000; // in miliseconds
+export const ANSWER_LIMITED_TIME = 90000; // in miliseconds
