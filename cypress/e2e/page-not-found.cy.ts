@@ -1,3 +1,5 @@
+export {};
+
 describe("Game", () => {
   it("Navigates to a non-existing page then to an existing page", () => {
     cy.visit("http://localhost:3000").then(() => cy.wait(1000));
