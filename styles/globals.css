@@ -125,3 +125,10 @@ blockquote p {
 .fade-in {
 	animation-name: fade-in;
 }
+
+/* Components */
+@layer components {
+	.btn-salmon {
+		@apply w-32 h-16 text-2xl border-2 rounded-lg border-neu-salmon text-neu-salmon;
+	}
+}
