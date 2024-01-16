@@ -19,10 +19,10 @@ const About = () => {
           </h2>
           <br />
           <p>
-            Typerun is an against clock game where you have to type a letter for each letter of the
-            alphabet where the minimum time to answer is {`${msToSeconds(ANSWER_LIMITED_TIME)}`}{" "}
-            seconds. To start just press the space bar and if you want to end or restart the game
-            press the escape key.
+            Typerun is a time trial game where you have to type a letter for each letter of the
+            alphabet where the minimum time to answer is{" "}
+            <strong>{`${msToSeconds(ANSWER_LIMITED_TIME)}`} seconds</strong>. To start just press
+            the space bar and if you want to end or restart the game press the escape key.
             <br />
             <br />
             Once you start the game, on the left side of the square will be the letter in turn, and
