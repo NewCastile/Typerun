@@ -5,7 +5,7 @@ import useFetchDefinitions from "../../../hooks/use-fetch-definitions";
 import GameResultsLoading from "./lib/game-results-loading";
 import GameResultsError from "./lib/game-results-error";
 import TotalTimeTaken from "./lib/total-time-taken";
-import GoBackButton from "./lib/go-back-button";
+import TryAgainButton from "./lib/try-again-button";
 import ResultsList from "./lib/game-results-list";
 
 const GameResults = () => {
@@ -55,7 +55,7 @@ const GameResults = () => {
     >
       <ResultsList items={data} />
       <TotalTimeTaken time={totalTimeTaken} />
-      <GoBackButton />
+      <TryAgainButton />
     </div>
   );
 };
