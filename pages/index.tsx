@@ -1,23 +1,20 @@
-/** @format */
+import type { NextPage } from "next";
 
-import type { NextPage } from "next"
-import Head from "next/head"
-import Game from "../components/Game"
+import Head from "next/head";
 
-const Home: NextPage = () => {
-	return (
-		<>
-			<Head>
-				<title>Typerun</title>
-				<meta
-					name='description'
-					content='Página principal de la aplicación y pantalla de juego'
-				/>
-				<link rel='icon' href='/favicon.ico' />
-			</Head>
-			<Game />
-		</>
-	)
-}
+import Game from "../components/game";
 
-export default Home
+const HomePage: NextPage = () => {
+  return (
+    <>
+      <Head>
+        <title>Typerun</title>
+        <meta content={"App home page"} name={"description"} />
+        <link href={"/favicon.ico"} rel={"icon"} />
+      </Head>
+      <Game />
+    </>
+  );
+};
+
+export default HomePage;

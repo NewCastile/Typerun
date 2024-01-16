@@ -7,7 +7,7 @@ const AboutPage = () => {
     <>
       <Head>
         <title>Typerun - Info</title>
-        <meta content={"Información y uso apropiado de la aplicación"} name={"about"} />
+        <meta content={"Information on how the game works"} name={"about"} />
         <link href={"/favicon.ico"} rel={"icon"} />
       </Head>
       <AboutContent />

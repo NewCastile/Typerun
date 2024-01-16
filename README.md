@@ -1,14 +1,5 @@
-<!-- @format -->
-
 ## Typerun. Resumen
-
-Hola y bienvenido a **Typerun**, un juego contrarreloj en donde deberás escribir una palabra por cada letra del alfabeto
-(sin incluir la ñ 😶). Tendrás un tiempo de respuesta máximo de seis segundos, transcurrido este tiempo pasarás
-a la siguiente letra registrando tu respuesta para la letra del momento será registrada como "Sin Respuesta".
-Al finalizar se te mostrará el tiempo en que demoraste en responder cada uno de las letra junto a su definición.
-
-Este juego está limitado en gran medida por el número de peticiones que pueden hacerse a la Oxford Dictionaries API,
-siendo un máximo de **1000 peticiones** por el plan de la API del proyecto. Para mayor información haz click el signo
-de interrogación en la parte superior derecha del elemento principal del juego.
-
-Dale un intento y sientete libre de notificarme cualquier mejora/cambio que te gustaría hacer.
+Hello  and welcome to **Typerun**, a time-against minigame where you have to type a word for each letter of the alphabet.
+You have 20 seconds type each word, once the time passes they game will move on to the next letter, and if you didn't type
+any word then the word for the letter of the moment will be "Unanswered". Once you finish the game it will show the total 
+time taken for this little test and the time taken of each word you introduced and its definitions.
