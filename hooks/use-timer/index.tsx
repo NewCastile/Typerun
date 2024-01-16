@@ -64,7 +64,7 @@ const useTimer = () => {
       timeSpendInMiliseconds >= 60000
         ? Math.floor((timeSpendInMiliseconds - 60000) / 1000)
         : Math.floor(timeSpendInMiliseconds / 1000);
-    const minutesPassed = Math.floor(timeSpendInCentiseconds / 60000);
+    const minutesPassed = Math.floor(timeSpendInMiliseconds / 60000);
     const secondsPassedString = secondsPassed < 10 ? `0${secondsPassed}` : `${secondsPassed}`;
     const minutesPassedString = minutesPassed < 10 ? `0${minutesPassed}` : `${minutesPassed}`;
     const dsPassedString =
