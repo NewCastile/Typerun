@@ -1,32 +1,44 @@
-/** @format */
+import type { NextApiRequest, NextApiResponse } from "next";
 
-import type { NextApiRequest, NextApiResponse } from "next"
-import { ResponseData } from "../../../types"
+import { SearchResult } from "../../../types";
+import { instanceOfWordArray, instanceOfWordNotFoundError } from "../../../helpers/type-guards";
+import { UNKWOWN_ERROR_RESPONSE, NO_DEFINITION_FOUND_ERROR } from "../../../constants";
 
-const OXFORD_APP_ID = process.env.OXFORD_APP_ID as string
-const OXFORD_API_KEY = process.env.OXFORD_API_KEY as string
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse<SearchResult | { message: string }>,
+) => {
+  const { wid } = req.query;
 
-export default async function handler(
-	req: NextApiRequest,
-	res: NextApiResponse<ResponseData>
-) {
-	const { wid } = req.query
-	const response = await fetch(
-		`https://od-api.oxforddictionaries.com:443/api/v2/entries/es/${wid}?strictMatch=true`,
-		{
-			headers: {
-				app_id: OXFORD_APP_ID,
-				app_key: OXFORD_API_KEY,
-			},
-		}
-	)
-		.then((res) => res.json())
-		.catch((reason) => console.error(reason))
-	if (response.error)
-		return res
-			.status(400)
-			.json({ word: wid as string, definition: "Palabra no encontrada" })
-	const definition: string =
-		response.results[0].lexicalEntries[0].entries[0].senses[0].definitions
-	res.status(200).json({ word: response.word as string, definition })
-}
+  if (!wid) {
+    return res.status(500).json({ message: "Missing 'wid' request parameter" });
+  }
+
+  if (Array.isArray(wid)) {
+    return res.status(400).json({ message: "Request parameter is an array of strings" });
+  }
+
+  const charCode = wid[0].charCodeAt(0);
+
+  const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${wid}`);
+
+  const responseData = await response.json();
+
+  if (instanceOfWordNotFoundError(responseData)) {
+    return res.status(400).json({ ...NO_DEFINITION_FOUND_ERROR, word: wid });
+  }
+
+  if (!response.ok) {
+    return res.status(400).json({ ...UNKWOWN_ERROR_RESPONSE, word: wid });
+  }
+
+  if (instanceOfWordArray(responseData)) {
+    const [{ word, meanings }] = responseData;
+    const [{ definitions }] = meanings;
+    const [{ definition, example }] = definitions;
+
+    return res.status(200).json({ word, charCode, definition, example });
+  }
+};
+
+export default handler;
